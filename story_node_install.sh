@@ -8,10 +8,11 @@ set -euo pipefail
 
 # Function to print colored output
 print_color() {
-    case "$2" in
-        "red") COLOR='\033[0;31m' ;;  # Red for errors
-        "yellow") COLOR='\033[0;33m' ;;  # Yellow for warnings
-        *) COLOR='\033[0;32m' ;;  # Green for success
+    local color=${2:-green}  # Default to green if no color is provided
+    case "$color" in
+        "red") COLOR='\033[0;31m' ;;   # Red for errors
+        "yellow") COLOR='\033[0;33m' ;; # Yellow for warnings
+        *) COLOR='\033[0;32m' ;;        # Green for success and default
     esac
     NC='\033[0m'
     printf "${COLOR}$1${NC}\n"
